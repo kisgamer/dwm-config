@@ -1,0 +1,4 @@
+1. install jetbrains mono
+https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip
+2. copy autostart.sh to ~/dwm/ and ~/.local/share/dwm/
+3. i think thats it
