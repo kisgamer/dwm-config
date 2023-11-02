@@ -84,10 +84,12 @@ static const char *rofipower[] = { "rofi", "-show", "power-menu", "-modi", "powe
 
 /* If you use pipewire add somewhere in your constants definition section. Use "wpctl status" to
    find out the real sink ID, 0 is a placeholder here. */
-static const char *upvol[]      = { "/usr/bin/wpctl",   "set-volume", "49",      "5%+",      NULL };
+/* static const char *upvol[]      = { "/usr/bin/wpctl",   "set-volume", "49",      "5%+",      NULL };
 static const char *downvol[]    = { "/usr/bin/wpctl",   "set-volume", "49",      "5%-",      NULL };
-static const char *mutevol[]    = { "/usr/bin/wpctl",   "set-mute",   "49",      "toggle",   NULL };
-
+static const char *mutevol[]    = { "/usr/bin/wpctl",   "set-mute",   "49",      "toggle",   NULL }; (changed to pactl because of id) */
+static const char *upvol[]	= { "/usr/bin/pamixer",  "-i",  "5",  NULL };
+static const char *downvol[]	= { "/usr/bin/pamixer",  "-d",  "5",  NULL };
+static const char *mutevol[]	= { "/usr/bin/pamixer",  "-m",  NULL };
 
 /* adding pause-play and stop and prev/skip */
 static const char *playpause[]  = { "/usr/bin/playerctl",  "play-pause",  NULL };
