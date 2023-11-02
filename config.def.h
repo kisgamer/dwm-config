@@ -89,6 +89,12 @@ static const char *downvol[]    = { "/usr/bin/wpctl",   "set-volume", "49",     
 static const char *mutevol[]    = { "/usr/bin/wpctl",   "set-mute",   "49",      "toggle",   NULL };
 
 
+/* adding pause-play and stop and prev/skip */
+static const char *playpause[]  = { "/usr/bin/playerctl",  "play-pause",  NULL };
+static const char *stop[]       = { "/usr/bin/playerctl",  "stop",        NULL };
+static const char *prev[]	= { "/usr/bin/playerctl",  "previous",    NULL };
+static const char *next[]	= { "/usr/bin/playerctl",  "next",        NULL };
+
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = rofidrun } },
@@ -129,6 +135,10 @@ static const Key keys[] = {
 	{ 0,                       XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
 	{ 0,                       XF86XK_AudioMute, spawn, {.v = mutevol } },
 	{ 0,                       XF86XK_AudioRaiseVolume, spawn, {.v = upvol } },
+	{ 0,                       XF86XK_AudioPlay,        spawn, {.v = playpause } },
+	{ 0,                       XF86XK_AudioStop,        spawn, {.v = stop } },
+	{ 0,                       XF86XK_AudioPrev,        spawn, {.v = prev } },
+	{ 0,                       XF86XK_AudioNext,        spawn, {.v = next } },
 };
 
 /* button definitions */
