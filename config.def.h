@@ -1,5 +1,8 @@
 /* See LICENSE file for copyright and license details. */
 
+#include <X11/XF86keysym.h>
+
+
 /* alt-tab configuration */
 static const unsigned int tabModKey 		= 0x40;	/* if this key is hold the alt-tab functionality stays acitve. This key must be the same as key that is used to active functin altTabStart `*/
 static const unsigned int tabCycleKey 		= 0x17;	/* if this key is hit the alt-tab program moves one position forward in clients stack. This key must be the same as key that is used to active functin altTabStart */
@@ -22,8 +25,8 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const int user_bh	    = 30;
 #define ICONSIZE 24   /* icon size */
 #define ICONSPACING 5 /* space between icon and title */
-static const char *fonts[]          = { "JetBrains Mono:size=13" };
-static const char dmenufont[]       = "JetBrains Mono:size=13";
+static const char *fonts[]          = { "JetBrains Mono:size=11" };
+static const char dmenufont[]       = "JetBrains Mono:size=11";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -77,11 +80,20 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *rofidrun[] = { "rofi", "-show", "drun", "-show-icons", NULL };
+static const char *rofipower[] = { "rofi", "-show", "power-menu", "-modi", "power-menu:rofi-power-menu", NULL };
+
+/* If you use pipewire add somewhere in your constants definition section. Use "wpctl status" to
+   find out the real sink ID, 0 is a placeholder here. */
+static const char *upvol[]      = { "/usr/bin/wpctl",   "set-volume", "49",      "5%+",      NULL };
+static const char *downvol[]    = { "/usr/bin/wpctl",   "set-volume", "49",      "5%-",      NULL };
+static const char *mutevol[]    = { "/usr/bin/wpctl",   "set-mute",   "49",      "toggle",   NULL };
+
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = rofidrun } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = rofipower } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -114,6 +126,9 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
+	{ 0,                       XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
+	{ 0,                       XF86XK_AudioMute, spawn, {.v = mutevol } },
+	{ 0,                       XF86XK_AudioRaiseVolume, spawn, {.v = upvol } },
 };
 
 /* button definitions */
@@ -132,4 +147,5 @@ static const Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
+
 
