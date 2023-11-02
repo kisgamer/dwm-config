@@ -89,7 +89,7 @@ static const char *downvol[]    = { "/usr/bin/wpctl",   "set-volume", "49",     
 static const char *mutevol[]    = { "/usr/bin/wpctl",   "set-mute",   "49",      "toggle",   NULL }; (changed to pactl because of id) */
 static const char *upvol[]	= { "/usr/bin/pamixer",  "-i",  "5",  NULL };
 static const char *downvol[]	= { "/usr/bin/pamixer",  "-d",  "5",  NULL };
-static const char *mutevol[]	= { "/usr/bin/pamixer",  "-m",  NULL };
+static const char *mutevol[]	= { "/usr/bin/pamixer",  "-t",  NULL };
 
 /* adding pause-play and stop and prev/skip */
 static const char *playpause[]  = { "/usr/bin/playerctl",  "play-pause",  NULL };
