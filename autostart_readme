@@ -1,0 +1,6 @@
+so maybe you have to put the autostart.sh in:
+/home/floti/.local/share/dwm/autostart.sh
+/home/floti/.dwm/autostart.sh
+/home/floti/dwm/autostart.sh
+
+idk its weird asf
