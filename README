@@ -1,3 +1,5 @@
+!! THIS PROJECT IS VERY OUTDATED! PLEASE PROCEED TO https://gitlab.com/kisgamer/dwm-config THANK YOU!
+
 This is my dwm config. Things needed to make this work:
     -JetBrains Mono font
     -autostart.sh WITH lxsession
